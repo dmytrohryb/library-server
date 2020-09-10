@@ -72,8 +72,7 @@ module.exports = sequelize => {
       unique: false,
       type: "BTREE",
       fields: ["user_id"]
-    }],
-    timestamps: false
+    }]
   };
   const ComentModel = sequelize.define("coment_model", attributes, options);
   return ComentModel;

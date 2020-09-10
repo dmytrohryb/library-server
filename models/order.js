@@ -66,6 +66,15 @@ module.exports = sequelize => {
         model: "status_model"
       }
     },
+    createdAt: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "createdAt"
+    },
     date: {
       type: DataTypes.STRING(45),
       allowNull: false,
@@ -99,8 +108,7 @@ module.exports = sequelize => {
       unique: false,
       type: "BTREE",
       fields: ["status_id"]
-    }],
-    timestamps: false
+    }]
   };
   const OrderModel = sequelize.define("order_model", attributes, options);
   return OrderModel;

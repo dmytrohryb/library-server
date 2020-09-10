@@ -27,8 +27,7 @@ module.exports = sequelize => {
   const options = {
     tableName: "author",
     comment: "",
-    indexes: [],
-    timestamps: false
+    indexes: []
   };
   const AuthorModel = sequelize.define("author_model", attributes, options);
   return AuthorModel;

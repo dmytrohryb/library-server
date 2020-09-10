@@ -27,8 +27,7 @@ module.exports = sequelize => {
   const options = {
     tableName: "gender",
     comment: "",
-    indexes: [],
-    timestamps: false
+    indexes: []
   };
   const GenderModel = sequelize.define("gender_model", attributes, options);
   return GenderModel;

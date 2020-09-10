@@ -21,7 +21,8 @@ module.exports = sequelize => {
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "login"
+      field: "login",
+      unique: "login_UNIQUE"
     },
     password: {
       type: DataTypes.STRING(45),
@@ -39,7 +40,8 @@ module.exports = sequelize => {
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "email"
+      field: "email",
+      unique: "email_UNIQUE"
     },
     avatar: {
       type: DataTypes.STRING(45),
@@ -66,7 +68,8 @@ module.exports = sequelize => {
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "phone"
+      field: "phone",
+      unique: "phone_UNIQUE"
     },
     age: {
       type: DataTypes.STRING(45),

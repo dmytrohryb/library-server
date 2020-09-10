@@ -46,8 +46,7 @@ module.exports = sequelize => {
       unique: false,
       type: "BTREE",
       fields: ["user_id"]
-    }],
-    timestamps: false
+    }]
   };
   const SessionModel = sequelize.define("session_model", attributes, options);
   return SessionModel;

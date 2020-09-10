@@ -1,60 +1,26 @@
-const Sequelize = require('sequelize')
+const database = require('./database')
+const cors = require('cors');
+const body_parser = require('body-parser');
+const TokenGenerator = require('uuid-token-generator');
+const express = require('express')
+const { DateTime } = require("luxon");
+const port = 4000;
+const tokGen = new TokenGenerator();
+const app = express();
 
-const sequelize = new Sequelize("library", "root", "658932147", {
-    dialect: "mysql",
-    host: "localhost"
-})
+app.use(body_parser.urlencoded({ extended: false }));
+app.use(body_parser.json());
+app.use(cors());
 
-const author = require('./models/author')(sequelize)
-const book = require('./models/book')(sequelize)
-const bookhasauthor = require('./models/bookhasauthor')(sequelize)
-const bookhasgenre = require('./models/bookhasgenre')(sequelize)
-const client = require('./models/client')(sequelize)
-const coment = require('./models/coment')(sequelize)
-const employee = require('./models/employee')(sequelize)
-const favorites = require('./models/favorites')(sequelize)
-const gender = require('./models/gender')(sequelize)
-const genre = require('./models/genre')(sequelize)
-const order = require('./models/order')(sequelize)
-const role = require('./models/role')(sequelize)
-const session = require('./models/session')(sequelize)
-const status = require('./models/status')(sequelize)
-const thebook = require('./models/thebook')(sequelize)
-const user = require('./models/user')(sequelize)
+app.listen(4000)
 
-const createUser = async (login, password, email, createdAt, phone, age, role_id, gender_id) => {
-    user.create({
-        login: login,
-        password: password,
-        email: email,
-        createdAt: createdAt,
-        phone: phone,
-        age: age,
-        role_id: role_id,
-        gender_id: gender_id
-      }).then(res => {
-        client.create({
-          user_id: res.dataValues.id
-        }).then(res => {
-          return true
-        }).catch(err => {
-          return false
-        })
-      }).catch(err=>console.log(err));
-}
-
-const createSession = async (login, password) => {
-  user.findAll({
-    where: {
-      login: login,
-      password: password
-    }
-  }).then(res => {
-    console.log(res[0].dataValues)
-  }).catch(err => {
+app.post('/create-user', function(req, res){
+  let dt = DateTime.local()
+  database.createUser(req.body.login, req.body.password, req.body.email, dt.year + '.' + ((dt.month < 10) ? '0' + dt.month : dt.month) + '.' + ((dt.day.length === 1) ? '0' + dt.day : dt.day), req.body.phone, req.body.age, 2, req.body.gender)
+  .then(result => {
+    res.send(result)
+  })
+  .catch(err => {
     console.log(err)
   })
-}
-
-createSession('test','test')
-
+})

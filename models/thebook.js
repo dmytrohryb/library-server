@@ -36,8 +36,7 @@ module.exports = sequelize => {
       unique: false,
       type: "BTREE",
       fields: ["book_id"]
-    }],
-    timestamps: false
+    }]
   };
   const ThebookModel = sequelize.define("thebook_model", attributes, options);
   return ThebookModel;

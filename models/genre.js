@@ -28,8 +28,7 @@ module.exports = sequelize => {
   const options = {
     tableName: "genre",
     comment: "",
-    indexes: [],
-    timestamps: false
+    indexes: []
   };
   const GenreModel = sequelize.define("genre_model", attributes, options);
   return GenreModel;

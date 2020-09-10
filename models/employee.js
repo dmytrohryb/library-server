@@ -36,8 +36,7 @@ module.exports = sequelize => {
       unique: false,
       type: "BTREE",
       fields: ["user_id"]
-    }],
-    timestamps: false
+    }]
   };
   const EmployeeModel = sequelize.define("employee_model", attributes, options);
   return EmployeeModel;

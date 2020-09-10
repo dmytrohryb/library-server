@@ -54,8 +54,7 @@ module.exports = sequelize => {
       unique: false,
       type: "BTREE",
       fields: ["book_id"]
-    }],
-    timestamps: false
+    }]
   };
   const FavoritesModel = sequelize.define("favorites_model", attributes, options);
   return FavoritesModel;

@@ -34,7 +34,6 @@ module.exports = sequelize => {
   const options = {
     tableName: "bookhasauthor",
     comment: "",
-    timestamps: false,
     indexes: [{
       name: "fk_bookhasauthor_book2_idx",
       unique: false,

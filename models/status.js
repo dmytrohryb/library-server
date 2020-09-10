@@ -28,8 +28,7 @@ module.exports = sequelize => {
   const options = {
     tableName: "status",
     comment: "",
-    indexes: [],
-    timestamps: false
+    indexes: []
   };
   const StatusModel = sequelize.define("status_model", attributes, options);
   return StatusModel;
