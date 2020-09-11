@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
-
+const TokenGenerator = require('uuid-token-generator');
+const tokGen = new TokenGenerator();
 const sequelize = new Sequelize("library", "root", "658932147", {
     dialect: "mysql",
     host: "localhost"
@@ -38,7 +39,7 @@ const createUser = async (login, password, email, createdAt, phone, age, role_id
             role_id: role_id,
             gender_id: gender_id
         })
-        console.log(res.dataValues.id)
+
         await client.create({user_id: res.dataValues.id})
 
         await transaction.commit();
@@ -48,21 +49,27 @@ const createUser = async (login, password, email, createdAt, phone, age, role_id
         if (err) await transaction.rollback();
         return false
     }
-
-    
 }
 
 const createSession = async (login, password) => {
-  user.findAll({
-    where: {
-      login: login,
-      password: password
+    let transaction;
+
+    try {
+        transaction = await sequelize.transaction();
+        let res = await user.findAll({
+            where: {
+                login: login,
+                password: password
+            }
+        })
+        await session.create({token: tokGen.generate(), user_id: res[0].dataValues.id})
+        await transaction.commit()
+        return res[0].dataValues
+    }catch (err){
+        console.log(err)
+        if (err) await transaction.rollback();
+        return false
     }
-  }).then(res => {
-    console.log(res[0].dataValues)
-  }).catch(err => {
-    console.log(err)
-  })
 }
 
 module.exports.createUser = createUser
