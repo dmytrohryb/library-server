@@ -62,9 +62,14 @@ const createSession = async (login, password) => {
                 password: password
             }
         })
-        await session.create({token: tokGen.generate(), user_id: res[0].dataValues.id})
+        let _token = tokGen.generate()
+        await session.create({token: _token, user_id: res[0].dataValues.id})
         await transaction.commit()
-        return res[0].dataValues
+        var tempData = {
+            userData: res[0].dataValues,
+            token: _token
+        }
+        return tempData
     }catch (err){
         console.log(err)
         if (err) await transaction.rollback();
@@ -72,5 +77,35 @@ const createSession = async (login, password) => {
     }
 }
 
+const identification = async (token) => {
+    let res = await session.findAll({
+        where: {
+            token: token
+        }
+    })
+    if(res[0].dataValues.user_id){
+        let userData = user.findAll({
+            where: {
+                id: res[0].dataValues.user_id
+            }
+        })
+        return userData
+    }else{
+        return false
+    }
+
+}
+
+const closeSession = async (token) => {
+    try{
+        await session.destroy({where: {token: token}})
+        return true
+    }catch (e){
+        return false
+    }
+}
+
 module.exports.createUser = createUser
 module.exports.createSession = createSession
+module.exports.identification = identification
+module.exports.closeSession = closeSession

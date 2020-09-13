@@ -33,3 +33,25 @@ app.post('/create-session', function (req, res){
           res.send(false)
       })
 })
+
+app.post('/identification', function (req, res){
+    database.identification(req.body.token)
+        .then(result => {
+            res.send(result)
+        })
+        .catch(err => {
+            res.send(false)
+            console.log(err)
+        })
+})
+
+app.post('/close-session', function (req, res){
+    database.closeSession(req.body.token)
+        .then(result => {
+            res.send(result)
+        })
+        .catch(err => {
+            res.send(false)
+            console.log(err)
+        })
+})
