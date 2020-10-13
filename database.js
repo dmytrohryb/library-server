@@ -8,23 +8,28 @@ const sequelize = new Sequelize("library", "root", "658932147", {
 
 const author = require('./models/author')(sequelize)
 const book = require('./models/book')(sequelize)
-const bookhasauthor = require('./models/bookhasauthor')(sequelize)
-const bookhasgenre = require('./models/bookhasgenre')(sequelize)
+const author_has_genre = require('./models/author_has_genre')(sequelize)
+const book_has_author = require('./models/book_has_author')(sequelize)
+const book_has_genre = require('./models/book_has_genre')(sequelize)
 const client = require('./models/client')(sequelize)
 const coment = require('./models/coment')(sequelize)
 const employee = require('./models/employee')(sequelize)
-const favorites = require('./models/favorites')(sequelize)
+const favourites = require('./models/favourites')(sequelize)
+const rating = require('./models/rating')(sequelize)
+const news = require('./models/news')(sequelize)
+const publisher = require('./models/publisher')
+const notification = require('./models/notification')(sequelize)
 const gender = require('./models/gender')(sequelize)
 const genre = require('./models/genre')(sequelize)
 const order = require('./models/order')(sequelize)
 const role = require('./models/role')(sequelize)
 const session = require('./models/session')(sequelize)
 const status = require('./models/status')(sequelize)
-const thebook = require('./models/thebook')(sequelize)
+const book_instance = require('./models/book_instance')(sequelize)
 const user = require('./models/user')(sequelize)
 
 const createUser = async (login, password, email, createdAt, phone, age, role_id, gender_id) => {
-    let transaction;    
+    let transaction;
 
     try {
         transaction = await sequelize.transaction();
@@ -33,9 +38,9 @@ const createUser = async (login, password, email, createdAt, phone, age, role_id
             login: login,
             password: password,
             email: email,
-            createdAt: createdAt,
             phone: phone,
             age: age,
+            settings: JSON.stringify({lang: 'ru', theme: 'dark'}),
             role_id: role_id,
             gender_id: gender_id
         })

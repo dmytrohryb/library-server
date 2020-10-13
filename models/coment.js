@@ -12,7 +12,7 @@ module.exports = sequelize => {
       autoIncrement: true,
       comment: null,
       field: "id",
-      unique: "idcoment_UNIQUE"
+      unique: "id_UNIQUE"
     },
     text: {
       type: DataTypes.TEXT,
@@ -22,28 +22,6 @@ module.exports = sequelize => {
       autoIncrement: false,
       comment: null,
       field: "text"
-    },
-    date: {
-      type: DataTypes.STRING(45),
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "date"
-    },
-    book_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "book_id",
-      references: {
-        key: "id",
-        model: "book_model"
-      }
     },
     user_id: {
       type: DataTypes.INTEGER,
@@ -57,21 +35,34 @@ module.exports = sequelize => {
         key: "id",
         model: "user_model"
       }
+    },
+    book_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "book_id",
+      references: {
+        key: "id",
+        model: "book_model"
+      }
     }
   };
   const options = {
     tableName: "coment",
     comment: "",
     indexes: [{
-      name: "fk_coment_book1_idx",
-      unique: false,
-      type: "BTREE",
-      fields: ["book_id"]
-    }, {
       name: "fk_coment_user1_idx",
       unique: false,
       type: "BTREE",
       fields: ["user_id"]
+    }, {
+      name: "fk_coment_book1_idx",
+      unique: false,
+      type: "BTREE",
+      fields: ["book_id"]
     }]
   };
   const ComentModel = sequelize.define("coment_model", attributes, options);

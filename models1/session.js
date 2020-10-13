@@ -12,7 +12,17 @@ module.exports = sequelize => {
       autoIncrement: true,
       comment: null,
       field: "id",
-      unique: "id_UNIQUE"
+      unique: "idtable1_UNIQUE"
+    },
+    token: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "token",
+      unique: "token_UNIQUE"
     },
     user_id: {
       type: DataTypes.INTEGER,
@@ -29,16 +39,16 @@ module.exports = sequelize => {
     }
   };
   const options = {
-    tableName: "client",
+    tableName: "session",
     comment: "",
-    timestamps: false,
     indexes: [{
-      name: "fk_client_user1_idx",
+      name: "fk_session_user1_idx",
       unique: false,
       type: "BTREE",
       fields: ["user_id"]
-    }]
+    }],
+    timestamps: false
   };
-  const ClientModel = sequelize.define("client_model", attributes, options);
-  return ClientModel;
+  const SessionModel = sequelize.define("session_model", attributes, options);
+  return SessionModel;
 };

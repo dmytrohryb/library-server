@@ -12,7 +12,7 @@ module.exports = sequelize => {
       autoIncrement: true,
       comment: null,
       field: "id",
-      unique: "idtable1_UNIQUE"
+      unique: "id_UNIQUE"
     },
     name: {
       type: DataTypes.STRING(45),
@@ -21,8 +21,7 @@ module.exports = sequelize => {
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "name",
-      unique: "name_UNIQUE"
+      field: "name"
     }
   };
   const options = {

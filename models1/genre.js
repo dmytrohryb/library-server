@@ -12,7 +12,7 @@ module.exports = sequelize => {
       autoIncrement: true,
       comment: null,
       field: "id",
-      unique: "id_UNIQUE"
+      unique: "idtable1_UNIQUE"
     },
     name: {
       type: DataTypes.STRING(45),
@@ -26,10 +26,10 @@ module.exports = sequelize => {
     }
   };
   const options = {
-    tableName: "role",
+    tableName: "genre",
     comment: "",
     indexes: []
   };
-  const RoleModel = sequelize.define("role_model", attributes, options);
-  return RoleModel;
+  const GenreModel = sequelize.define("genre_model", attributes, options);
+  return GenreModel;
 };

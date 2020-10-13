@@ -12,7 +12,7 @@ module.exports = sequelize => {
       autoIncrement: true,
       comment: null,
       field: "id",
-      unique: "id_UNIQUE"
+      unique: "idtable1_UNIQUE"
     },
     title: {
       type: DataTypes.TEXT,
@@ -23,15 +23,6 @@ module.exports = sequelize => {
       comment: null,
       field: "title"
     },
-    date: {
-      type: DataTypes.DATEONLY,
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "date"
-    },
     description: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -41,29 +32,29 @@ module.exports = sequelize => {
       comment: null,
       field: "description"
     },
-    publisher_id: {
-      type: DataTypes.INTEGER,
+    img: {
+      type: DataTypes.TEXT,
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "publisher_id",
-      references: {
-        key: "id",
-        model: "publisher_model"
-      }
+      field: "img"
+    },
+    date: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "date"
     }
   };
   const options = {
     tableName: "book",
     comment: "",
-    indexes: [{
-      name: "fk_book_publisher1_idx",
-      unique: false,
-      type: "BTREE",
-      fields: ["publisher_id"]
-    }]
+    indexes: []
   };
   const BookModel = sequelize.define("book_model", attributes, options);
   return BookModel;

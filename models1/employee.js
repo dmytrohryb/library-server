@@ -12,24 +12,32 @@ module.exports = sequelize => {
       autoIncrement: true,
       comment: null,
       field: "id",
-      unique: "id_UNIQUE"
+      unique: "idtable1_UNIQUE"
     },
-    name: {
-      type: DataTypes.STRING(45),
+    user_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "name",
-      unique: "name_UNIQUE"
+      field: "user_id",
+      references: {
+        key: "id",
+        model: "user_model"
+      }
     }
   };
   const options = {
-    tableName: "role",
+    tableName: "employee",
     comment: "",
-    indexes: []
+    indexes: [{
+      name: "fk_employee_user1_idx",
+      unique: false,
+      type: "BTREE",
+      fields: ["user_id"]
+    }]
   };
-  const RoleModel = sequelize.define("role_model", attributes, options);
-  return RoleModel;
+  const EmployeeModel = sequelize.define("employee_model", attributes, options);
+  return EmployeeModel;
 };

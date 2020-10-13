@@ -26,10 +26,10 @@ module.exports = sequelize => {
     }
   };
   const options = {
-    tableName: "role",
+    tableName: "publisher",
     comment: "",
     indexes: []
   };
-  const RoleModel = sequelize.define("role_model", attributes, options);
-  return RoleModel;
+  const PublisherModel = sequelize.define("publisher_model", attributes, options);
+  return PublisherModel;
 };

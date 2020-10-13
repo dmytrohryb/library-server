@@ -14,57 +14,48 @@ module.exports = sequelize => {
       field: "id",
       unique: "id_UNIQUE"
     },
-    title: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "title"
-    },
-    date: {
-      type: DataTypes.DATEONLY,
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "date"
-    },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "description"
-    },
-    publisher_id: {
+    user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "publisher_id",
+      field: "user_id",
       references: {
         key: "id",
-        model: "publisher_model"
+        model: "user_model"
+      }
+    },
+    book_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "book_id",
+      references: {
+        key: "id",
+        model: "book_model"
       }
     }
   };
   const options = {
-    tableName: "book",
+    tableName: "favourites",
     comment: "",
     indexes: [{
-      name: "fk_book_publisher1_idx",
+      name: "fk_favourites_user1_idx",
       unique: false,
       type: "BTREE",
-      fields: ["publisher_id"]
+      fields: ["user_id"]
+    }, {
+      name: "fk_favourites_book1_idx",
+      unique: false,
+      type: "BTREE",
+      fields: ["book_id"]
     }]
   };
-  const BookModel = sequelize.define("book_model", attributes, options);
-  return BookModel;
+  const FavouritesModel = sequelize.define("favourites_model", attributes, options);
+  return FavouritesModel;
 };

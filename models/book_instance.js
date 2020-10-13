@@ -14,57 +14,49 @@ module.exports = sequelize => {
       field: "id",
       unique: "id_UNIQUE"
     },
-    title: {
-      type: DataTypes.TEXT,
+    code_isbn: {
+      type: DataTypes.STRING(60),
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "title"
+      field: "code_isbn",
+      unique: "code_isbn_UNIQUE"
     },
-    date: {
-      type: DataTypes.DATEONLY,
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "date"
-    },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "description"
-    },
-    publisher_id: {
+    book_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "publisher_id",
+      field: "book_id",
       references: {
         key: "id",
-        model: "publisher_model"
+        model: "book_model"
       }
+    },
+    in_stock: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "in_stock"
     }
   };
   const options = {
-    tableName: "book",
+    tableName: "book_instance",
     comment: "",
     indexes: [{
-      name: "fk_book_publisher1_idx",
+      name: "fk_book_instance_book1_idx",
       unique: false,
       type: "BTREE",
-      fields: ["publisher_id"]
+      fields: ["book_id"]
     }]
   };
-  const BookModel = sequelize.define("book_model", attributes, options);
-  return BookModel;
+  const BookInstanceModel = sequelize.define("book_instance_model", attributes, options);
+  return BookInstanceModel;
 };

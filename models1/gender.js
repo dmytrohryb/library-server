@@ -21,15 +21,14 @@ module.exports = sequelize => {
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "name",
-      unique: "name_UNIQUE"
+      field: "name"
     }
   };
   const options = {
-    tableName: "role",
+    tableName: "gender",
     comment: "",
     indexes: []
   };
-  const RoleModel = sequelize.define("role_model", attributes, options);
-  return RoleModel;
+  const GenderModel = sequelize.define("gender_model", attributes, options);
+  return GenderModel;
 };

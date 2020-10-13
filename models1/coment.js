@@ -12,19 +12,19 @@ module.exports = sequelize => {
       autoIncrement: true,
       comment: null,
       field: "id",
-      unique: "id_UNIQUE"
+      unique: "idcoment_UNIQUE"
     },
-    title: {
+    text: {
       type: DataTypes.TEXT,
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "title"
+      field: "text"
     },
     date: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.STRING(45),
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
@@ -32,39 +32,48 @@ module.exports = sequelize => {
       comment: null,
       field: "date"
     },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "description"
-    },
-    publisher_id: {
+    book_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "publisher_id",
+      field: "book_id",
       references: {
         key: "id",
-        model: "publisher_model"
+        model: "book_model"
+      }
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "user_id",
+      references: {
+        key: "id",
+        model: "user_model"
       }
     }
   };
   const options = {
-    tableName: "book",
+    tableName: "coment",
     comment: "",
     indexes: [{
-      name: "fk_book_publisher1_idx",
+      name: "fk_coment_book1_idx",
       unique: false,
       type: "BTREE",
-      fields: ["publisher_id"]
+      fields: ["book_id"]
+    }, {
+      name: "fk_coment_user1_idx",
+      unique: false,
+      type: "BTREE",
+      fields: ["user_id"]
     }]
   };
-  const BookModel = sequelize.define("book_model", attributes, options);
-  return BookModel;
+  const ComentModel = sequelize.define("coment_model", attributes, options);
+  return ComentModel;
 };

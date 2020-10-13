@@ -12,7 +12,7 @@ module.exports = sequelize => {
       autoIncrement: true,
       comment: null,
       field: "id",
-      unique: "idtable1_UNIQUE"
+      unique: "id_UNIQUE"
     },
     user_id: {
       type: DataTypes.INTEGER,

@@ -12,37 +12,19 @@ module.exports = sequelize => {
       autoIncrement: true,
       comment: null,
       field: "id",
-      unique: "id_UNIQUE"
+      unique: "idtable1_UNIQUE"
     },
-    created_at: {
-      type: DataTypes.DATE,
+    thebook_isbn: {
+      type: DataTypes.STRING(45),
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "created_at"
-    },
-    date_return: {
-      type: DataTypes.DATEONLY,
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "date_return"
-    },
-    client_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "client_id",
+      field: "thebook_isbn",
       references: {
-        key: "id",
-        model: "client_model"
+        key: "isbn",
+        model: "thebook_model"
       }
     },
     employee_id: {
@@ -58,17 +40,17 @@ module.exports = sequelize => {
         model: "employee_model"
       }
     },
-    book_instance_id: {
+    client_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "book_instance_id",
+      field: "client_id",
       references: {
         key: "id",
-        model: "book_instance_model"
+        model: "client_model"
       }
     },
     status_id: {
@@ -83,26 +65,44 @@ module.exports = sequelize => {
         key: "id",
         model: "status_model"
       }
+    },
+    createdAt: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "createdAt"
+    },
+    date: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "date"
     }
   };
   const options = {
     tableName: "order",
     comment: "",
     indexes: [{
-      name: "fk_order_client1_idx",
+      name: "fk_table1_thebook1_idx",
       unique: false,
       type: "BTREE",
-      fields: ["client_id"]
+      fields: ["thebook_isbn"]
     }, {
       name: "fk_order_employee1_idx",
       unique: false,
       type: "BTREE",
       fields: ["employee_id"]
     }, {
-      name: "fk_order_book_instance1_idx",
+      name: "fk_order_client1_idx",
       unique: false,
       type: "BTREE",
-      fields: ["book_instance_id"]
+      fields: ["client_id"]
     }, {
       name: "fk_order_status1_idx",
       unique: false,

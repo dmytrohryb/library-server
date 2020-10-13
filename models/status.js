@@ -12,7 +12,7 @@ module.exports = sequelize => {
       autoIncrement: true,
       comment: null,
       field: "id",
-      unique: "idstatus_UNIQUE"
+      unique: "id_UNIQUE"
     },
     name: {
       type: DataTypes.STRING(45),

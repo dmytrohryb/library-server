@@ -14,57 +14,66 @@ module.exports = sequelize => {
       field: "id",
       unique: "id_UNIQUE"
     },
-    title: {
+    text: {
       type: DataTypes.TEXT,
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "title"
+      field: "text"
     },
-    date: {
-      type: DataTypes.DATEONLY,
+    created_at: {
+      type: DataTypes.DATE,
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "date"
+      field: "created_at"
     },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "description"
-    },
-    publisher_id: {
+    user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "publisher_id",
+      field: "user_id",
       references: {
         key: "id",
-        model: "publisher_model"
+        model: "user_model"
+      }
+    },
+    order_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "order_id",
+      references: {
+        key: "id",
+        model: "order_model"
       }
     }
   };
   const options = {
-    tableName: "book",
+    tableName: "notification",
     comment: "",
     indexes: [{
-      name: "fk_book_publisher1_idx",
+      name: "fk_notification_user1_idx",
       unique: false,
       type: "BTREE",
-      fields: ["publisher_id"]
+      fields: ["user_id"]
+    }, {
+      name: "fk_notification_order1_idx",
+      unique: false,
+      type: "BTREE",
+      fields: ["order_id"]
     }]
   };
-  const BookModel = sequelize.define("book_model", attributes, options);
-  return BookModel;
+  const NotificationModel = sequelize.define("notification_model", attributes, options);
+  return NotificationModel;
 };

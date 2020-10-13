@@ -12,7 +12,7 @@ module.exports = sequelize => {
       autoIncrement: true,
       comment: null,
       field: "id",
-      unique: "idtable1_UNIQUE"
+      unique: "id_UNIQUE"
     },
     token: {
       type: DataTypes.STRING(45),
@@ -41,13 +41,13 @@ module.exports = sequelize => {
   const options = {
     tableName: "session",
     comment: "",
+    timestamps: false,
     indexes: [{
       name: "fk_session_user1_idx",
       unique: false,
       type: "BTREE",
       fields: ["user_id"]
-    }],
-    timestamps: false
+    }]
   };
   const SessionModel = sequelize.define("session_model", attributes, options);
   return SessionModel;

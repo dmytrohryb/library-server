@@ -12,24 +12,23 @@ module.exports = sequelize => {
       autoIncrement: true,
       comment: null,
       field: "id",
-      unique: "id_UNIQUE"
+      unique: "idauthor_UNIQUE"
     },
     name: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.TEXT,
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "name",
-      unique: "name_UNIQUE"
+      field: "name"
     }
   };
   const options = {
-    tableName: "role",
+    tableName: "author",
     comment: "",
     indexes: []
   };
-  const RoleModel = sequelize.define("role_model", attributes, options);
-  return RoleModel;
+  const AuthorModel = sequelize.define("author_model", attributes, options);
+  return AuthorModel;
 };

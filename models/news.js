@@ -14,22 +14,30 @@ module.exports = sequelize => {
       field: "id",
       unique: "id_UNIQUE"
     },
-    name: {
+    text: {
       type: DataTypes.STRING(45),
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "name",
-      unique: "name_UNIQUE"
+      field: "text"
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "created_at"
     }
   };
   const options = {
-    tableName: "role",
+    tableName: "news",
     comment: "",
     indexes: []
   };
-  const RoleModel = sequelize.define("role_model", attributes, options);
-  return RoleModel;
+  const NewsModel = sequelize.define("news_model", attributes, options);
+  return NewsModel;
 };
