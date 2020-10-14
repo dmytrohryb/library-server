@@ -1,21 +1,54 @@
-const database = require('./database')
+const createUser = require('./modules/database/createUser')
+const createSession = require('./modules/database/createSession')
+const closeSession = require('./modules/database/closeSession')
+const identification = require('./modules/database/identification')
 const cors = require('cors');
 const body_parser = require('body-parser');
 const express = require('express')
 const { DateTime } = require("luxon");
-const port = 4000;
+const httpPort = 4000;
+const socketPort = 8000;
 const app = express();
 const md5 = require('md5');
+const io = require('socket.io')();
 
 app.use(body_parser.urlencoded({ extended: false }));
 app.use(body_parser.json());
 app.use(cors());
 
-app.listen(port)
+const users = new Map()
+let items = users.entries()
+
+io.on('connection', (client) => {
+    if(users.has(client.handshake.query.id)){
+        users.delete(client.handshake.query.id)
+    }
+
+    users.set(client.handshake.query.id, client.id)
+
+    client.on('logout', () => {
+        users.delete(client.handshake.query.id)
+    })
+
+    client.on('disconnect', (reason) => {
+        for(let user of users.entries()){
+            if(client.id === user[1]){
+                users.delete(user[0])
+            }
+        }
+    })
+})
+
+io.listen(socketPort)
+console.log('socket port ', socketPort)
+
+app.listen(httpPort, () => {
+    console.log('http port', httpPort)
+})
 
 app.post('/create-user', function(req, res){
   let dt = DateTime.local()
-  database.createUser(req.body.login, req.body.password, req.body.email, dt.year + '.' + ((dt.month < 10) ? '0' + dt.month : dt.month) + '.' + ((dt.day.length === 1) ? '0' + dt.day : dt.day), req.body.phone, req.body.age, 2, req.body.gender)
+  createUser(req.body.login, req.body.password, req.body.email, dt.year + '.' + ((dt.month < 10) ? '0' + dt.month : dt.month) + '.' + ((dt.day.length === 1) ? '0' + dt.day : dt.day), req.body.phone, req.body.age, 2, req.body.gender)
   .then(result => {
     res.send(result)
   })
@@ -25,7 +58,7 @@ app.post('/create-user', function(req, res){
 })
 
 app.post('/create-session', function (req, res){
-  database.createSession(req.body.login, req.body.password)
+  createSession(req.body.login, req.body.password)
       .then(result => {
           res.send(result)
       })
@@ -35,7 +68,8 @@ app.post('/create-session', function (req, res){
 })
 
 app.post('/identification', function (req, res){
-    database.identification(req.body.token)
+    console.log(req.body)
+    identification(req.body.token)
         .then(result => {
             res.send(result)
         })
@@ -46,7 +80,7 @@ app.post('/identification', function (req, res){
 })
 
 app.post('/close-session', function (req, res){
-    database.closeSession(req.body.token)
+    closeSession(req.body.token)
         .then(result => {
             res.send(result)
         })
