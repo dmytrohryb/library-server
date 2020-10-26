@@ -1,3 +1,2 @@
-var md5 = require('md5');
-
-console.log(md5('test'))
+let res = /@/.test('mmdasasddasda')
+console.log(res)

@@ -16,7 +16,7 @@ module.exports = (function database(){
     this.client = require('../models/client')(this.sequelize)
     this.coment = require('../models/coment')(this.sequelize)
     this.employee = require('../models/employee')(this.sequelize)
-    this.favourites = require('../models/favourites')(this.sequelize)
+    this.favorites = require('../models/favorites')(this.sequelize)
     this.rating = require('../models/rating')(this.sequelize)
     this.news = require('../models/news')(this.sequelize)
     this.publisher = require('../models/publisher')
@@ -29,6 +29,10 @@ module.exports = (function database(){
     this.status = require('../models/status')(this.sequelize)
     this.book_instance = require('../models/book_instance')(this.sequelize)
     this.user = require('../models/user')(this.sequelize)
+    this.order_has_book_instance = require('../models/order_has_book_instance')(this.sequelize)
+    this.subscription = require('../models/subscription')(this.sequelize)
+    this.rental_order = require('../models/rental_order')(this.sequelize)
+
 
     this.Sequelize = function (){
         return this.sequelize
@@ -49,6 +53,11 @@ module.exports = (function database(){
     return this
 
 }(seq))
+
+
+const dsa = () => {
+
+}
 
 
 

@@ -14,31 +14,27 @@ module.exports = sequelize => {
       field: "id",
       unique: "id_UNIQUE"
     },
-    value: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "value"
-    },
-    book_id: {
-      type: DataTypes.INTEGER,
+    created_at: {
+      type: DataTypes.DATE,
       allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "book_id",
-      references: {
-        key: "id",
-        model: "book_model"
-      }
+      field: "created_at"
+    },
+    date_return: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "date_return"
     },
     client_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
@@ -62,45 +58,58 @@ module.exports = sequelize => {
         model: "employee_model"
       }
     },
-    coment_id: {
+    book_instance_id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "coment_id",
+      field: "book_instance_id",
       references: {
         key: "id",
-        model: "coment_model"
+        model: "book_instance_model"
+      }
+    },
+    status_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "status_id",
+      references: {
+        key: "id",
+        model: "status_model"
       }
     }
   };
   const options = {
-    tableName: "rating",
+    tableName: "rental_order",
     comment: "",
     indexes: [{
-      name: "fk_rating_book1_idx",
-      unique: false,
-      type: "BTREE",
-      fields: ["book_id"]
-    }, {
-      name: "fk_rating_client1_idx",
+      name: "fk_order_client1_idx",
       unique: false,
       type: "BTREE",
       fields: ["client_id"]
     }, {
-      name: "fk_rating_employee1_idx",
+      name: "fk_order_employee1_idx",
       unique: false,
       type: "BTREE",
       fields: ["employee_id"]
     }, {
-      name: "fk_rating_coment1_idx",
+      name: "fk_order_book_instance1_idx",
       unique: false,
       type: "BTREE",
-      fields: ["coment_id"]
+      fields: ["book_instance_id"]
+    }, {
+      name: "fk_order_status1_idx",
+      unique: false,
+      type: "BTREE",
+      fields: ["status_id"]
     }]
   };
-  const RatingModel = sequelize.define("rating_model", attributes, options);
-  return RatingModel;
+  const RentalOrderModel = sequelize.define("rental_order_model", attributes, options);
+  return RentalOrderModel;
 };

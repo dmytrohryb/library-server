@@ -22,25 +22,25 @@
     <list default="true" id="89c150a4-59a7-4524-accb-b6c410e397e0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/library-app.mwb" beforeDir="false" afterPath="$PROJECT_DIR$/library-app.mwb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models1/author.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models1/book.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models1/bookhasauthor.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models1/bookhasgenre.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models1/client.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models1/coment.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models1/employee.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models1/favorites.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models1/gender.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models1/genre.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models1/order.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models1/role.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models1/session.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models1/status.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models1/thebook.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models1/user.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-app.mwb.bak" beforeDir="false" afterPath="$PROJECT_DIR$/library-app.mwb.bak" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/author.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/author.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/book.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/book.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/book_instance.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/book_instance.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/coment.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/coment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/favourites.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/news.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/news.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/notification.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/notification.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/order.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/rating.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/rating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/database.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/database/createSession.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/database/createSession.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/database/createUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/database/createUser.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +65,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../library-app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../itcraft" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -97,7 +97,18 @@
       <workItem from="1600006753421" duration="3745000" />
       <workItem from="1602608483679" duration="2555000" />
       <workItem from="1602660221318" duration="13812000" />
-      <workItem from="1602689779106" duration="2333000" />
+      <workItem from="1602689779106" duration="5764000" />
+      <workItem from="1602767785499" duration="17000" />
+      <workItem from="1602875800028" duration="2286000" />
+      <workItem from="1602885846407" duration="1445000" />
+      <workItem from="1602942340157" duration="19000" />
+      <workItem from="1602968930260" duration="1284000" />
+      <workItem from="1603144038226" duration="14241000" />
+      <workItem from="1603294480789" duration="319000" />
+      <workItem from="1603309817051" duration="11440000" />
+      <workItem from="1603704209191" duration="12324000" />
+      <workItem from="1603726656550" duration="36000" />
+      <workItem from="1603726879285" duration="10000" />
     </task>
     <servers />
   </component>
@@ -121,10 +132,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1074" y="202" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1599853407229" />
-    <state x="748" y="278" key="FileChooserDialogImpl" timestamp="1599847657931">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="748" y="279" width="424" height="483" key="FileChooserDialogImpl" timestamp="1603726887017">
+      <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="748" y="278" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1599847657931" />
+    <state x="748" y="279" width="424" height="483" key="FileChooserDialogImpl/0.0.1920.1044@0.0.1920.1044" timestamp="1603726887017" />
     <state width="1897" height="340" key="GridCell.Tab.0.bottom" timestamp="1602679356144">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
@@ -197,9 +209,10 @@
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="624" y="238" key="run.anything.popup/0.0.1920.1044@0.0.1920.1044" timestamp="1602668780439" />
-    <state x="1103" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1599853980329">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="1103" y="230" width="672" height="681" key="search.everywhere.popup" timestamp="1603708509861">
+      <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="1103" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599853980329" />
+    <state x="1103" y="230" width="672" height="681" key="search.everywhere.popup/0.0.1920.1044@0.0.1920.1044" timestamp="1603708509861" />
   </component>
 </project>

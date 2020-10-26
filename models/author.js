@@ -15,7 +15,7 @@ module.exports = sequelize => {
       unique: "id_UNIQUE"
     },
     name: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING(60),
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
@@ -24,7 +24,7 @@ module.exports = sequelize => {
       field: "name"
     },
     nationality: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(20),
       allowNull: false,
       defaultValue: null,
       primaryKey: false,

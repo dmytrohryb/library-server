@@ -14,15 +14,15 @@ module.exports = sequelize => {
       field: "id",
       unique: "iduser_UNIQUE"
     },
-    login: {
-      type: DataTypes.STRING(25),
+    email: {
+      type: DataTypes.STRING(45),
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "login",
-      unique: "login_UNIQUE"
+      field: "email",
+      unique: "email_UNIQUE"
     },
     password: {
       type: DataTypes.TEXT,
@@ -33,9 +33,27 @@ module.exports = sequelize => {
       comment: null,
       field: "password"
     },
+    name: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "name"
+    },
+    surname: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "surname"
+    },
     phone: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
@@ -45,7 +63,7 @@ module.exports = sequelize => {
     },
     age: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
@@ -61,9 +79,18 @@ module.exports = sequelize => {
       comment: null,
       field: "settings"
     },
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: "insert into genre (name) value ('adventure');\ninsert into publisher (name) value ('Publisher');\ninsert into gender (name) value ('Male');\ninsert into gender (name) value ('Female');\ninsert into user",
+      field: "created_at"
+    },
     gender_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,

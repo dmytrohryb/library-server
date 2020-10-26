@@ -45,9 +45,22 @@ module.exports = sequelize => {
         model: "user_model"
       }
     },
+    rental_order_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "rental_order_id",
+      references: {
+        key: "id",
+        model: "rental_order_model"
+      }
+    },
     order_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
@@ -69,6 +82,11 @@ module.exports = sequelize => {
       fields: ["user_id"]
     }, {
       name: "fk_notification_order1_idx",
+      unique: false,
+      type: "BTREE",
+      fields: ["rental_order_id"]
+    }, {
+      name: "fk_notification_order2_idx",
       unique: false,
       type: "BTREE",
       fields: ["order_id"]

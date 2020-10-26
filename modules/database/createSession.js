@@ -2,14 +2,14 @@ const database = require('../database')
 const TokenGenerator = require('uuid-token-generator');
 const tokGen = new TokenGenerator();
 
-module.exports = async function createSession (login, password) {
+module.exports = async function createSession (email, password) {
     let transaction;
 
     try {
         transaction = await database.Sequelize.transaction();
         let res = await database.User().findAll({
             where: {
-                login: login,
+                email: email,
                 password: password
             }
         })

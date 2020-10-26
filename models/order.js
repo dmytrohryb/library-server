@@ -23,18 +23,18 @@ module.exports = sequelize => {
       comment: null,
       field: "created_at"
     },
-    date_return: {
-      type: DataTypes.DATEONLY,
+    price: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "date_return"
+      field: "price"
     },
     client_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
@@ -58,19 +58,6 @@ module.exports = sequelize => {
         model: "employee_model"
       }
     },
-    book_instance_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "book_instance_id",
-      references: {
-        key: "id",
-        model: "book_instance_model"
-      }
-    },
     status_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -89,22 +76,17 @@ module.exports = sequelize => {
     tableName: "order",
     comment: "",
     indexes: [{
-      name: "fk_order_client1_idx",
+      name: "fk_order_client2_idx",
       unique: false,
       type: "BTREE",
       fields: ["client_id"]
     }, {
-      name: "fk_order_employee1_idx",
+      name: "fk_order_employee2_idx",
       unique: false,
       type: "BTREE",
       fields: ["employee_id"]
     }, {
-      name: "fk_order_book_instance1_idx",
-      unique: false,
-      type: "BTREE",
-      fields: ["book_instance_id"]
-    }, {
-      name: "fk_order_status1_idx",
+      name: "fk_order_status2_idx",
       unique: false,
       type: "BTREE",
       fields: ["status_id"]

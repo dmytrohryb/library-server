@@ -14,48 +14,48 @@ module.exports = sequelize => {
       field: "id",
       unique: "id_UNIQUE"
     },
-    text: {
-      type: DataTypes.STRING(45),
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "text"
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "created_at"
-    },
-    employee_id: {
+    user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "employee_id",
+      field: "user_id",
       references: {
         key: "id",
-        model: "employee_model"
+        model: "user_model"
+      }
+    },
+    book_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "book_id",
+      references: {
+        key: "id",
+        model: "book_model"
       }
     }
   };
   const options = {
-    tableName: "news",
+    tableName: "favorites",
     comment: "",
     indexes: [{
-      name: "fk_news_employee1_idx",
+      name: "fk_favourites_user1_idx",
       unique: false,
       type: "BTREE",
-      fields: ["employee_id"]
+      fields: ["user_id"]
+    }, {
+      name: "fk_favourites_book1_idx",
+      unique: false,
+      type: "BTREE",
+      fields: ["book_id"]
     }]
   };
-  const NewsModel = sequelize.define("news_model", attributes, options);
-  return NewsModel;
+  const FavoritesModel = sequelize.define("favorites_model", attributes, options);
+  return FavoritesModel;
 };

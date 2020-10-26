@@ -41,6 +41,15 @@ module.exports = sequelize => {
       comment: null,
       field: "description"
     },
+    premium: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "premium"
+    },
     publisher_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -53,6 +62,15 @@ module.exports = sequelize => {
         key: "id",
         model: "publisher_model"
       }
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "created_at"
     }
   };
   const options = {

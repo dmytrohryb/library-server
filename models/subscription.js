@@ -9,14 +9,41 @@ module.exports = sequelize => {
       allowNull: false,
       defaultValue: null,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: false,
       comment: null,
       field: "id",
       unique: "id_UNIQUE"
     },
-    user_id: {
+    start: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "start"
+    },
+    end: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "end"
+    },
+    price: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "price"
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
@@ -26,36 +53,18 @@ module.exports = sequelize => {
         key: "id",
         model: "user_model"
       }
-    },
-    book_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
-      comment: null,
-      field: "book_id",
-      references: {
-        key: "id",
-        model: "book_model"
-      }
     }
   };
   const options = {
-    tableName: "favourites",
+    tableName: "subscription",
     comment: "",
     indexes: [{
-      name: "fk_favourites_user1_idx",
+      name: "fk_subscription_user1_idx",
       unique: false,
       type: "BTREE",
       fields: ["user_id"]
-    }, {
-      name: "fk_favourites_book1_idx",
-      unique: false,
-      type: "BTREE",
-      fields: ["book_id"]
     }]
   };
-  const FavouritesModel = sequelize.define("favourites_model", attributes, options);
-  return FavouritesModel;
+  const SubscriptionModel = sequelize.define("subscription_model", attributes, options);
+  return SubscriptionModel;
 };

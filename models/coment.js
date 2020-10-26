@@ -38,7 +38,7 @@ module.exports = sequelize => {
     },
     book_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
@@ -48,6 +48,28 @@ module.exports = sequelize => {
         key: "id",
         model: "book_model"
       }
+    },
+    news_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "news_id",
+      references: {
+        key: "id",
+        model: "news_model"
+      }
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "created_at"
     }
   };
   const options = {
@@ -63,6 +85,11 @@ module.exports = sequelize => {
       unique: false,
       type: "BTREE",
       fields: ["book_id"]
+    }, {
+      name: "fk_coment_news1_idx",
+      unique: false,
+      type: "BTREE",
+      fields: ["news_id"]
     }]
   };
   const ComentModel = sequelize.define("coment_model", attributes, options);
